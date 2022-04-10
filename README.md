@@ -1,24 +1,25 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+```
+bundle install
+rails db:create
+rails db:migrate
+rails db:seed
+rails webpacker:install
+```
 
-Things you may want to cover:
+Check if it runs
 
-* Ruby version
+```
+rails s
+```
 
-* System dependencies
+## Test accounts
 
-* Configuration
+### admin account
 
-* Database creation
+admin@admin.com / abc123
 
-* Database initialization
+### customer account
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+customer@customer.com / abc123
