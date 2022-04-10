@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  namespace :customer do
-    get 'dashboard/index'
-  end
   devise_for :users
   root 'pages#index'
   
