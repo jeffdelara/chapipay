@@ -9,5 +9,9 @@ class ApplicationController < ActionController::Base
     return admin_dashboard_path if current_user.admin?
     return customer_dashboard_path if current_user.customer?
   end
+
+  def require_admin 
+    redirect_to root_path unless current_user.admin?
+  end
   
 end
