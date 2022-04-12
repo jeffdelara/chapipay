@@ -1,4 +1,7 @@
 <h1>Editing Category</h1>
+<% if @category.image.persisted? %>
+  <%= image_tag @category.image %>
+<% end %>
 
 <%= render 'form', category: @category %>
 

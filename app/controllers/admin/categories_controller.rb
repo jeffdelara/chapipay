@@ -35,7 +35,7 @@ class Admin::CategoriesController < ApplicationController
   # PATCH/PUT /categories/1
   def update
     if @category.update(category_params)
-      redirect_to @category, notice: 'Category was successfully updated.'
+      redirect_to admin_category_path(@category), notice: 'Category was successfully updated.'
     else
       render :edit
     end
@@ -55,6 +55,6 @@ class Admin::CategoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def category_params
-      params.require(:category).permit(:name)
+      params.require(:category).permit(:name, :image)
     end
 end
