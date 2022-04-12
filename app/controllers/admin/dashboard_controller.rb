@@ -4,11 +4,5 @@ class Admin::DashboardController < ApplicationController
 
   def index
   end
-  
-  private 
-
-  def require_admin 
-    redirect_to root_path unless current_user.admin?
-  end
 
 end
