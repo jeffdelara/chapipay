@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Products</h1>
+<%= link_to 'Add product', new_admin_product_path %>
+<table>
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Category</th>
+      <th>Sku</th>
+      <th>In stock</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td>image</td>
+        <td><%= product.name %></td>
+        <td><%= product.price %></td>
+        <td><%= product.category.name %></td>
+        <td><%= product.sku %></td>
+        <td><%= product.in_stock %></td>
+        <td><%= link_to 'Show', admin_product_path(product) %></td>
+        <td><%= link_to 'Edit', edit_admin_product_path(product) %></td>
+        <td><%= link_to 'Delete', admin_product_path(product), :method => :delete, 
+          :data => {:confirm => 'Are you sure?'} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
