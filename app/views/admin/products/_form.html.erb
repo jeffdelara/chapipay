@@ -11,6 +11,17 @@
     </div>
   <% end %>
 
+  <% if product.images.attached? %>
+    <% product.images.each do |image| %>
+      <%= image_tag image.variant(resize_to_limit: [150, 150]) %>
+    <% end %>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :images %><br>
+    <%= form.file_field :images, :multiple => true %>
+  </div>
+
   <div class="field">
     <%= form.label :name %><br>
     <%= form.text_field :name %>

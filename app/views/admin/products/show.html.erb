@@ -1,5 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+<% if @product.images.attached? %>
+  <% @product.images.each do |image| %>
+    <%= image_tag image.variant(resize_to_limit: [150, 150]) %>
+  <% end %>
+<% end %>
+
 <p>
   <strong>Name:</strong>
   <%= @product.name %>
@@ -17,7 +23,7 @@
 
 <p>
   <strong>Category:</strong>
-  <%= @product.category_id %>
+  <%= @product.category.name %>
 </p>
 
 <p>
