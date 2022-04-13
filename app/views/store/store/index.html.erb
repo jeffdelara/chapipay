@@ -1,0 +1,10 @@
+<% @products.each do |product| %>
+  <div>
+    <h4><%= product.name %></h4>
+    <div>
+      <%= image_tag product.images.first.variant(resize_to_limit: [200, 200]) %>
+    </div>
+    <div><%= product.price %></div>
+    <div><%= link_to 'Add to cart', '#' %></div>
+  </div>
+<% end %>

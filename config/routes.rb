@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
+  root 'store/store#index'
+
+  namespace :store do
+    get '/', to: 'store#index'
+  end
   devise_for :users
-  root 'pages#index'
   
   namespace :admin do 
     get '/', to: 'dashboard#index'
