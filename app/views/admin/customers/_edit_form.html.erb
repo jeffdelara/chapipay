@@ -1,0 +1,33 @@
+<%= form_with model: [:admin, @customer] do |f| %>
+
+  <% if @customer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
+
+      <ul>
+        <% @customer.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class='field'>
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name %>
+  </div>
+  
+  <div class='field'>
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :email %><br>
+    <%= f.email_field :email %>
+  </div>
+
+  <div class='field'>
+    <%= f.submit %>
+  </div>
+<% end %>

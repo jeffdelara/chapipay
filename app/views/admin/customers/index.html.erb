@@ -1,0 +1,23 @@
+<h1>Customers</h1>
+<%= link_to 'Add customer', new_admin_customer_path %>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @customers.each do |customer| %>
+      <tr>
+        <td><%= "#{customer.first_name} #{customer.last_name}" %></td>
+        <td><%= customer.email %></td>
+        <td><%= link_to 'Show', admin_customer_path(customer) %></td>
+        <td><%= link_to 'Edit', edit_admin_customer_path(customer) %></td>
+        <td><%= link_to 'Delete', admin_customer_path(customer), :method => :delete, 
+          :data => {:confirm => 'Are you sure?'} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
