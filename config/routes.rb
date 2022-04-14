@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
 
   root 'store/store#index'
-
+  devise_for :users
+  
+  resources :cart, controller: 'store/cart', except: [:index]
+  get '/cart', to: 'store/cart#show'
+  resources :checkout, controller: 'store/checkout'
+  
   namespace :store do
     get '/', to: 'store#index'
   end
-  devise_for :users
   
   namespace :admin do 
     get '/', to: 'dashboard#index'

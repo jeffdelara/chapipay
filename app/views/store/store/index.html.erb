@@ -1,10 +1,17 @@
+<div class='store'>
 <% @products.each do |product| %>
-  <div>
-    <h4><%= product.name %></h4>
-    <div>
+  <div class='product'>
+    <div class='image-200'>
       <%= image_tag product.images.first.variant(resize_to_limit: [200, 200]) %>
     </div>
+    <div><%= product.name %></div>
     <div><%= product.price %></div>
-    <div><%= link_to 'Add to cart', '#' %></div>
+    <div class='btn'>
+      <%= form_with url: cart_index_path, method: :post do |f| %>
+      <%= f.hidden_field :product_id, :value => product.id %>
+      <%= f.submit 'Add to cart' %>
+      <% end %>
+    </div>
   </div>
 <% end %>
+</div>
