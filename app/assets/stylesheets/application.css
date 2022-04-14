@@ -13,3 +13,53 @@
  *= require_tree .
  *= require_self
  */
+
+ .text-right {
+   text-align: right;
+ }
+
+ .text-center {
+
+ }
+
+ .store {
+   display: flex;
+   gap: 20px;
+ }
+
+ .product {
+  width: 200px;
+  height: 350px;
+ }
+
+ .btn {
+  vertical-align: bottom;
+ }
+
+ .notice, .alert {
+   text-align: center;
+ }
+
+ .image {
+  width: 150px; 
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+
+ .image-200 {
+   width: 200px;
+   height: 200px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+
+ th {
+  white-space: nowrap;
+ }
+
+ .no-wrap {
+  white-space: nowrap;
+ }

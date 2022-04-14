@@ -1,0 +1,82 @@
+<h1>Shopping Cart</h1>
+
+<%= link_to 'Continue shopping', root_path %>
+
+<% if @cart_items.present? %>
+  <%= form_with url: checkout_index_path, method: :post do |f| %>
+    <table>
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <% @cart_items.each do |item| %>
+          <tr>
+            <td>
+              <div style="width:80px;">
+              <% if item.product.images.attached? %>
+                <%= image_tag item.product.images.first.variant(resize_to_limit: [80, 80]) %>
+              <% end %>
+              </div>
+            </td>
+            <td>
+              <div><%= item.product.name %></div>
+              <div>
+                <%= link_to 'remove', cart_path(item), 
+                  :method => :delete, 
+                  :data => {:confirm => 'Are you sure?'} %>
+              </div>
+            </td>
+            <td class='no-wrap'><%= item.product.price %></td>
+            <td class='text-center'>
+              <input 
+                type="hidden" 
+                name="cart_items[product_id][]" 
+                value="<%= item.product.id %>" />
+              
+              <input 
+                type="number"
+                data-cart-id="<%= item.id %>" 
+                id="cart_item_<%= item.id %>" 
+                name="cart_items[quantity][]" 
+                class="quantity" 
+                min="1" 
+                value="<%= item.quantity %>" />
+            </td>
+            <td>
+              <div class="subtotals" 
+                data-subtotal="<%= item.quantity * item.product.price %>" 
+                id="cart_item_subtotal_<%= item.id %>">
+                <%= item.quantity * item.product.price %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <th colspan="4">Total</th>
+          <th>
+            <div id="cart_item_total"><%= compute_cart_total(@cart_items) %>
+          </th>
+        </tr>
+      </tfoot>
+      
+    </table>
+
+    <div class='text-right'>
+      <%= f.submit 'Checkout' %>
+    </div>
+  <% end %>
+
+<% else %>
+  <p>No items on your cart.</p>
+<% end %>
+<%= javascript_pack_tag 'cart_update' %>
