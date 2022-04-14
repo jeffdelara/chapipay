@@ -9,9 +9,8 @@
       <th>Name</th>
       <th>Price</th>
       <th>Category</th>
-      <th>Sku</th>
       <th>In stock</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -20,18 +19,22 @@
       <tr>
         <td>
           <% if product.images.attached? %>
-            <%= image_tag product.images.first.variant(resize_to_limit: [150, 150]) %>
+            <%= image_tag product.images.first.variant(resize_to_limit: [80, 80]) %>
           <% end %>
         </td>
-        <td><%= product.name %></td>
-        <td><%= product.price %></td>
+        <td class="no-wrap">
+          <%= product.name %><br>
+          <small>SKU#: <%= product.sku %></small>
+        </td>
+        <td class="no-wrap"><%= product.price %></td>
         <td><%= product.category.name %></td>
-        <td><%= product.sku %></td>
         <td><%= product.in_stock %></td>
-        <td><%= link_to 'Show', admin_product_path(product) %></td>
-        <td><%= link_to 'Edit', edit_admin_product_path(product) %></td>
-        <td><%= link_to 'Delete', admin_product_path(product), :method => :delete, 
-          :data => {:confirm => 'Are you sure?'} %></td>
+        <td class="no-wrap">
+          <%= link_to 'Show', admin_product_path(product) %><br>
+          <%= link_to 'Edit', edit_admin_product_path(product) %><br>
+          <%= link_to 'Delete', admin_product_path(product), :method => :delete, 
+          :data => {:confirm => 'Are you sure?'} %>
+        </td>
       </tr>
     <% end %>
   </tbody>
