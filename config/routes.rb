@@ -7,9 +7,7 @@ Rails.application.routes.draw do
   get '/cart', to: 'store/cart#show'
   resources :checkout, controller: 'store/checkout'
   
-  namespace :store do
-    get '/', to: 'store#index'
-  end
+  resources :store, controller: 'store/store'
   
   namespace :admin do 
     get '/', to: 'dashboard#index'

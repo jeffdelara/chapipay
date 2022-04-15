@@ -8,5 +8,9 @@ module Store
       Product.where(:in_stock => true)
     end
 
+    def self.get(id)
+      Product.friendly.find(id)
+    end
+
   end
 end

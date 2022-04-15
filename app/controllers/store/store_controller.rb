@@ -5,4 +5,8 @@ class Store::StoreController < ApplicationController
   def index
     @products = Store::StoreService.get_all_products
   end
+
+  def show 
+    @product = Store::StoreService.get(params[:id])
+  end
 end
