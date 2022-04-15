@@ -2,9 +2,11 @@
 <% @products.each do |product| %>
   <div class='product'>
     <div class='image-200'>
+      <%= link_to store_path(product) do %>
       <%= image_tag product.images.first.variant(resize_to_limit: [200, 200]) %>
+      <% end %>
     </div>
-    <div><%= product.name %></div>
+    <div><%= link_to product.name, store_path(product) %></div>
     <div><%= product.price %></div>
     <div class='btn'>
       <%= form_with url: cart_index_path, method: :post do |f| %>

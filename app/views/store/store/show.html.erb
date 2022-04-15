@@ -1,0 +1,30 @@
+
+<%= link_to 'Back to store', store_index_path %>
+<table>
+  <tbody>
+    <tr>
+      <td class="image-250">
+        <% if @product.images.attached? %>
+          <%= image_tag @product.images.first.variant(resize_to_limit: [250, 250]) %>
+        <% end %>
+      </td>
+      
+      <td>
+        <h1><%= @product.name %></h1>
+      </td>
+    </tr>
+    <tr>
+      <td class="text-center">
+        <%= form_with url: cart_index_path, method: :post do |f| %>
+        <%= @product.price %><br>
+        <%= f.hidden_field :product_id, value: @product.id %>
+        <%= f.submit 'Add to cart' %>
+        <% end %>
+      </td>
+
+      <td>
+        <%= @product.description %>
+      </td>
+    </tr>
+  </tbody>
+</table>

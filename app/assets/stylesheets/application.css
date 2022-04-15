@@ -23,8 +23,13 @@
  }
 
  .store {
-   display: flex;
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
    gap: 20px;
+ }
+
+ .store img {
+   border-radius: 8px;
  }
 
  .product {
@@ -55,6 +60,11 @@
    justify-content: center;
    align-items: center;
  }
+
+ .image-250 {
+  width: 250px;
+  height: 250px;
+}
 
  th {
   white-space: nowrap;
