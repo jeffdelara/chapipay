@@ -4,21 +4,18 @@ class Store::CartController < ApplicationController
 
   def show 
     # show all cart items 
-    @cart_items = current_user.cart_items
+    @cart_items = Cart::GetCartItems.get(current_user)
   end
 
   def new 
   end 
 
   def create 
-    # add items into the cart
-    @cart_item = current_user.cart_items.where(
-        :product_id => params[:product_id]
-      ).first_or_create
+    response = Cart::AddItemToCart.add(
+      current_user, params[:product_id]
+    )
     
-    @cart_item.quantity += 1
-    
-    if @cart_item.save 
+    if response 
       redirect_to cart_index_path, notice: 'Item added to cart.'
     else  
       redirect_to root_path
@@ -29,14 +26,16 @@ class Store::CartController < ApplicationController
   end
 
   def update 
-    # update cart 
-    @cart_item = current_user.cart_items.find_by(:id => cart_params[:id])
-    @cart_item.quantity = cart_params[:quantity]
+    response = Cart::UpdateCart.update(
+      id: cart_params[:id],   
+      quantity: cart_params[:quantity],
+      customer: current_user
+    )
     
-    if @cart_item.save 
+    if response 
       render :json => {
         :status => :ok, 
-        :cart_item => @cart_item
+        :cart_item => response
       }, :include => :product
     else 
       render :json => {:errors => 'Can not be saved.'}
@@ -44,9 +43,7 @@ class Store::CartController < ApplicationController
   end
 
   def destroy
-    # delete a cart item
-    @cart_item = current_user.cart_items.find(params[:id])
-    @cart_item.destroy
+    Cart::RemoveItemFromCart.remove(current_user, params[:id])
     redirect_to cart_index_path, notice: 'Item removed from cart.'
   end
 
