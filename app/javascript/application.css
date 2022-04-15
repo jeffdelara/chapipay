@@ -1,0 +1,7 @@
+@import "tailwindcss/base";
+@import "tailwindcss/utilities";
+@import "tailwindcss/components";
+
+button, input[type="submit"] {
+  @apply bg-indigo-500;
+}

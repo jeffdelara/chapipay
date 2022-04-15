@@ -5,11 +5,11 @@ module Store
     end
 
     def self.get_all_products
-      Product.where(:in_stock => true)
+      Products::ProductRepository.get_store_products
     end
 
     def self.get(id)
-      Product.friendly.find(id)
+      Products::ProductRepository.find(id)
     end
 
   end
