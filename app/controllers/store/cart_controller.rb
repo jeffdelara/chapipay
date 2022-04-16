@@ -4,14 +4,14 @@ class Store::CartController < ApplicationController
 
   def show 
     # show all cart items 
-    @cart_items = Cart::GetCartItems.get(current_user)
+    @cart_items = Cart::CartService.get(current_user)
   end
 
   def new 
   end 
 
   def create 
-    response = Cart::AddItemToCart.add(
+    response = Cart::CartService.add(
       current_user, params[:product_id]
     )
     
@@ -26,24 +26,17 @@ class Store::CartController < ApplicationController
   end
 
   def update 
-    response = Cart::UpdateCart.update(
+    response = Cart::CartService.update(
       id: cart_params[:id],   
       quantity: cart_params[:quantity],
       customer: current_user
     )
     
-    if response 
-      render :json => {
-        :status => :ok, 
-        :cart_item => response
-      }, :include => :product
-    else 
-      render :json => {:errors => 'Can not be saved.'}
-    end
+    render Cart::CartUpdateSerializer.run(response)
   end
 
   def destroy
-    Cart::RemoveItemFromCart.remove(current_user, params[:id])
+    Cart::CartService.remove(current_user, params[:id])
     redirect_to cart_index_path, notice: 'Item removed from cart.'
   end
 

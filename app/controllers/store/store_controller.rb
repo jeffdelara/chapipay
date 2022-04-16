@@ -3,10 +3,10 @@ class Store::StoreController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    @products = Store::StoreService.get_all_products
+    @products = Products::ProductService.all_in_stock
   end
 
   def show 
-    @product = Store::StoreService.get(params[:id])
+    @product = Products::ProductService.find(params[:id])
   end
 end

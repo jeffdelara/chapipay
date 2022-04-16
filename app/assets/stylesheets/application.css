@@ -14,7 +14,8 @@
  *= require_self
  */
 
- .text-right {
+
+ /* .text-right {
    text-align: right;
  }
 
@@ -72,4 +73,4 @@
 
  .no-wrap {
   white-space: nowrap;
- }
+ } */
