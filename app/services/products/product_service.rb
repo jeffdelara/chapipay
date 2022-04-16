@@ -7,5 +7,9 @@ module Products
     def self.all 
       Products::ProductRepository.all
     end
+    
+    def self.all_in_stock 
+      Products::ProductRepository.all_in_stock
+    end
   end
 end

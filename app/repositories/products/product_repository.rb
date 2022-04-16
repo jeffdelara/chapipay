@@ -9,7 +9,7 @@ module Products
       Product.includes(:category).all
     end
 
-    def self.get_store_products 
+    def self.all_in_stock 
       Product.where(:in_stock => true)
     end
 

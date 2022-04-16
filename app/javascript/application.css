@@ -2,6 +2,35 @@
 @import "tailwindcss/utilities";
 @import "tailwindcss/components";
 
-button, input[type="submit"] {
-  @apply bg-indigo-500;
+body {
+  @apply text-gray-500;
+}
+
+.main-container {
+  @apply w-full md:w-3/5 md:mx-auto md:max-w-4xl p-4 md:p-0;
+}
+
+a {
+  @apply hover:text-indigo-500;
+}
+
+.title {
+  @apply border-b text-3xl;
+}
+
+.left {
+  @apply text-center flex justify-center flex-col
+}
+
+.btn {
+  @apply bg-indigo-500 text-white px-3 py-2 text-sm uppercase rounded-sm 
+  hover:bg-indigo-600 cursor-pointer mt-3 shadow-md;
+}
+
+.price {
+  @apply text-xl text-gray-600;
+}
+
+img {
+  @apply rounded shadow-lg;
 }

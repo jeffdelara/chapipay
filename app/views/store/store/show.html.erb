@@ -1,30 +1,33 @@
 
-<%= link_to 'Back to store', store_index_path %>
-<table>
-  <tbody>
-    <tr>
-      <td class="image-250">
-        <% if @product.images.attached? %>
-          <%= image_tag @product.images.first.variant(resize_to_limit: [250, 250]) %>
-        <% end %>
-      </td>
-      
-      <td>
-        <h1><%= @product.name %></h1>
-      </td>
-    </tr>
-    <tr>
-      <td class="text-center">
-        <%= form_with url: cart_index_path, method: :post do |f| %>
-        <%= @product.price %><br>
-        <%= f.hidden_field :product_id, value: @product.id %>
-        <%= f.submit 'Add to cart' %>
-        <% end %>
-      </td>
+<%= link_to store_index_path, class: 'back text-sm text-gray-400' do %>
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+<% end %>
 
-      <td>
-        <%= @product.description %>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class='p-4 md:p-0 md:grid grid-cols-2 gap-8 mt-4'>
+  <div class='left'>
+    <% if @product.images.attached? %>
+      <%= image_tag @product.images.first %>
+      
+      <div class='mt-4 grid grid-cols-5 gap-2'>
+        <% @product.images.each do |img| %>
+          <%= image_tag img.variant(resize_to_limit: [80, 80]), class: 'object-cover w-24 h-12' %>
+        <% end %>
+      </div>
+    <% end %>
+
+  </div>
+  <div class='right mt-4 md:mt-0 text-center md:text-left'>
+    <h1 class='title'><%= @product.name %></h1>
+    <div class='mt-6 text-sm'><%= @product.description %></div>
+    
+    <div class='mt-4'>
+    <%= form_with url: cart_index_path, method: :post do |f| %>
+      <div class='price mt-4'>&#8369; <%= @product.price %></div>
+      <%= f.hidden_field :product_id, value: @product.id %>
+      <%= f.submit 'Add to cart', class: 'btn' %>
+    <% end %>
+    </div>
+  </div>
+</div>
+

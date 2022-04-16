@@ -5,7 +5,7 @@ class Admin::ProductsController < ApplicationController
 
   # GET /products
   def index
-    @products = Product::ProductService.all
+    @products = Products::ProductService.all
   end
 
   # GET /products/1
