@@ -1,0 +1,10 @@
+<h1>Address</h1>
+<%= link_to 'Go to customers', admin_addresses_path %>
+<%= link_to 'Back to customer', admin_customer_path(@address.user) %>
+<p>House number: <%= @address.house_number %></p>
+<p>Street: <%= @address.street %></p>
+<p>Town: <%= @address.town %></p>
+<p>City: <%= @address.city %></p>
+<p>Country: <%= @address.country %></p>
+<p>Zip Code: <%= @address.zip_code %></p>
+<p>Mobile Number: <%= @address.mobile_number %></p>
