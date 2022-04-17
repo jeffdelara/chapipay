@@ -1,9 +1,14 @@
 <h1>Addresses</h1>
 
+<p>There are <%= @addresses.count %> registered 
+  <%= @addresses.count <= 1 ? "address" : "addresses" %> 
+</p>
+
 <% if @addresses.count >= 1%>
   <table>
     <thead>
       <tr>
+        <th>Email</th>
         <th>House No.</th>
         <th>Street</th>
         <th>Town</th>

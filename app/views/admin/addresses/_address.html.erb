@@ -1,5 +1,8 @@
 
 <tr>
+  <% if @addresses %>
+    <td><%= address.user.email %></td>
+  <% end %>
   <td><%= address.house_number %></td>
   <td><%= address.street %></td>
   <td><%= address.town %></td>
@@ -14,4 +17,3 @@
       %>
   </td>
 </tr>
-
