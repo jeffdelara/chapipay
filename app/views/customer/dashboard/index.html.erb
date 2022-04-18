@@ -1,9 +1,17 @@
-<h1>Customer Dashboard</h1>
-<p>This is the dashboard for the customers.</p>
+<h1 class='text-3xl'>My Account</h1>
 
-<ul>
-  <li>My Profile</li>
-  <li>My Orders</li>
-  <li>My Addresses</li>
-</ul>
+<div class='grid grid-cols-4 mt-4'>
+  <div class='col-span-1'>
+    <ul>
+      <li>My Orders</li>
+      <li>My Profile</li>
+      <li><%= link_to "My Cart (#{cart_count})", cart_index_path %></li>
+      <li>My Addresses</li>
+    </ul>
+  </div>
+
+  <div class='col-span-3'>
+    <h2 class='text-2xl'>My Orders</h2>
+  </div>
+</div>
 

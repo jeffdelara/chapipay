@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :addresses, dependent: :destroy
+  has_many :cart_items
+  has_many :products, :through => :cart_items
 
   def customer? 
     !self.admin?

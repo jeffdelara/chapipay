@@ -1,0 +1,22 @@
+<div class='store text-center md:grid md:grid-cols-3 gap-4 text-gray-700'>
+<% @products.each do |product| %>
+  <div class='product p-4'>
+    <div class='image-200 flex justify-center items-center' style="height:200px">
+      <%= link_to store_path(product) do %>
+      <%= image_tag product.images.first.variant(resize_to_limit: [200, 200]) %>
+      <% end %>
+    </div>
+    <div class='mt-4 truncate text-gray-500 hover:text-indigo-500'>
+      <%= link_to product.name, store_path(product) %>
+    </div>
+    <div class='price'>&#8369; <%= product.price %></div>
+    <div>
+      <%= form_with url: cart_index_path, method: :post do |f| %>
+      <%= f.hidden_field :product_id, :value => product.id %>
+      <%= f.submit 'Add to cart', 
+        class: 'btn' %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+</div>

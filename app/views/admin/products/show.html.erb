@@ -1,11 +1,10 @@
-<p id="notice"><%= notice %></p>
-
+<div class="flex flex-wrap gap-4">
 <% if @product.images.attached? %>
   <% @product.images.each do |image| %>
     <%= image_tag image.variant(resize_to_limit: [150, 150]) %>
   <% end %>
 <% end %>
-
+</div>
 <p>
   <strong>Name:</strong>
   <%= @product.name %>

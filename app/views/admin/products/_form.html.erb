@@ -11,20 +11,14 @@
     </div>
   <% end %>
 
-  <% if product.images.attached? %>
-    <% product.images.each do |image| %>
-      <%= image_tag image.variant(resize_to_limit: [150, 150]) %>
-    <% end %>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :images %><br>
-    <%= form.file_field :images, :multiple => true %>
-  </div>
-
   <div class="field">
     <%= form.label :name %><br>
     <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :slug %><br>
+    <%= form.text_field :slug %>
   </div>
 
   <div class="field">
@@ -32,9 +26,23 @@
     <%= form.text_field :price %>
   </div>
 
+<label class='mt-4'>Product images</label>
+  <div class='flex flex-wrap gap-4'>
+  <% if product.images.attached? %>
+    <% product.images.each do |image| %>
+      <%= image_tag image.variant(resize_to_limit: [150, 150]) %>
+    <% end %>
+  <% end %>
+  </div>
+
+  <div class="field mb-4">
+    <%= form.label :images %><br>
+    <%= form.file_field :images, :multiple => true %>
+  </div>
+
   <div class="field">
     <%= form.label :description %><br>
-    <%= form.text_area :description %>
+    <%= form.rich_text_area :description %>
   </div>
 
   <div class="field">

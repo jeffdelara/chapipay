@@ -1,0 +1,79 @@
+@import "tailwindcss/base";
+@import "tailwindcss/utilities";
+@import "tailwindcss/components";
+
+body {
+  @apply text-gray-500;
+}
+
+.main-container {
+  @apply w-full md:w-3/5 md:mx-auto md:max-w-4xl p-4 md:p-0;
+}
+
+a {
+  @apply text-indigo-500 hover:text-indigo-700;
+}
+
+input[type="text"], 
+input[type="email"], 
+input[type="password"], 
+select {
+  @apply border-b-2 outline-none p-1 w-full;
+}
+
+.title {
+  @apply border-b text-3xl;
+}
+
+.left {
+  @apply text-center flex justify-center flex-col
+}
+
+label {
+  @apply mt-2 font-light inline-block;
+}
+
+h1, h2 {
+  @apply text-2xl text-gray-700 my-4;
+}
+
+.btn, input[type="submit"] {
+  @apply bg-indigo-500 text-white px-3 py-2 text-sm uppercase rounded-sm 
+  hover:bg-indigo-600 hover:text-white cursor-pointer my-3 shadow-md inline-block;
+}
+
+.price {
+  @apply text-xl text-gray-600;
+}
+
+img {
+  @apply rounded shadow-lg;
+}
+
+.notice {
+  @apply p-2 text-center rounded my-4 bg-green-50 text-green-800; 
+}
+
+.alert {
+  @apply p-2 text-center rounded my-4 bg-red-50 text-red-800
+}
+
+.form {
+  @apply max-w-md mx-auto p-6;
+}
+
+table {
+  @apply table-auto w-full
+}
+
+th, td {
+  @apply p-2 whitespace-nowrap;
+}
+
+th div {
+  @apply font-semibold text-left;
+}
+
+tbody {
+  @apply text-sm divide-y divide-gray-100;
+}

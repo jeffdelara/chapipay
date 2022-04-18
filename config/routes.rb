@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
 
+  root 'store/store#index'
   devise_for :users
-  root 'pages#index'
+  
+  resources :cart, controller: 'store/cart', except: [:index]
+  get '/cart', to: 'store/cart#show'
+  resources :checkout, controller: 'store/checkout'
+  
+  resources :store, controller: 'store/store'
   
   namespace :admin do 
     get '/', to: 'dashboard#index'
