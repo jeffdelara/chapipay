@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  customer_details: MyText
+  delivery_details: MyText
+  total: 1.5
+
+two:
+  user_id: 1
+  customer_details: MyText
+  delivery_details: MyText
+  total: 1.5

@@ -1,0 +1,16 @@
+<%=  form_with scope: :order, url: admin_order_path, method: :put, locale: true do |form| %>
+  <div class="field">
+    <%= form.label :customer_details %><br>
+    <%= form.text_field :customer_details %><br>
+
+    <%= form.label :delivery_details %><br>
+    <%= form.text_field :delivery_details %><br>
+
+    <%= form.label :order_status %><br>
+    <%= form.select :status, ['Pending', 'Processing', 'Completed'] %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

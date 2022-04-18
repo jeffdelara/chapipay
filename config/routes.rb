@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get '/dashboard', to: 'dashboard#index'
     resources :categories
     resources :users
+    resources :orders
   end
 
   namespace :customer do 
