@@ -12,10 +12,12 @@ Rails.application.routes.draw do
   namespace :admin do 
     get '/', to: 'dashboard#index'
     get '/dashboard', to: 'dashboard#index'
-    
+    get 'addresses', to: 'addresses#index'
     resources :categories
     resources :products
-    resources :customers
+    resources :customers do
+      resources :addresses, except: :index 
+    end
     
   end
 

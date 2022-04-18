@@ -1,5 +1,27 @@
 <h1>Customer</h1>
 
 <%= link_to 'Back to customers', admin_customers_path %>
+<%= link_to 'Add address', new_admin_customer_address_path(@customer)%>
 <p>Name: <%= "#{@customer.first_name} #{@customer.last_name}" %></p>
 <p>Email: <%= @customer.email %></p>
+<p>Customer have <%= @customer.addresses.count %> registered <%= @customer.addresses.count <= 1 ? "address" : "addresses" %> </p>
+
+<% if @customer.addresses.count >= 1%>
+  <table>
+    <thead>
+      <tr>
+        <th>House No.</th>
+        <th>Street</th>
+        <th>Town</th>
+        <th>City</th>
+        <th>Country</th>
+        <th>Zip Code</th>
+        <th>Mobile No.</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @customer.addresses %>
+    </tbody>
+  </table>
+<% end %>

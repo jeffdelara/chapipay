@@ -1,0 +1,19 @@
+
+<tr>
+  <% if @addresses %>
+    <td><%= address.user.email %></td>
+  <% end %>
+  <td><%= address.house_number %></td>
+  <td><%= address.street %></td>
+  <td><%= address.town %></td>
+  <td><%= address.city %></td>
+  <td><%= address.country %></td>
+  <td><%= address.zip_code %></td>
+  <td><%= address.mobile_number %></td>
+  <td><%= link_to 'Show', admin_customer_address_path(address.user, address) %></td>
+  <td><%= link_to 'Edit', edit_admin_customer_address_path(address.user, address) %></td>
+  <td><%= link_to 'Delete', admin_customer_address_path(address.user, address),
+          method: :delete, data: { confirm: 'Are you sure?' } 
+      %>
+  </td>
+</tr>
