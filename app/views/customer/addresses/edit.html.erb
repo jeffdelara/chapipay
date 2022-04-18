@@ -1,2 +1,4 @@
-<h1>Customer::Addresses#edit</h1>
-<p>Find me in app/views/customer/addresses/edit.html.erb</p>
+<h1>Edit Address</h1>
+
+<%= link_to "Back to addresses", customer_addresses_path %>
+<%= render 'form', { address: @address } %>
