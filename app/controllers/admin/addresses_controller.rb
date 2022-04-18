@@ -65,7 +65,8 @@ class Admin::AddressesController < ApplicationController
       :city,
       :country,
       :zip_code,
-      :mobile_number
+      :mobile_number,
+      :state
     )
   end
 end

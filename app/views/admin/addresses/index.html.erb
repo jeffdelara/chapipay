@@ -1,6 +1,8 @@
 <h1>Addresses</h1>
 
-<p>There are <%= @addresses.count %> registered 
+<p>There 
+  <%= @addresses.count <= 1 ? "is" : "are" %>
+  <%= @addresses.count %> registered 
   <%= @addresses.count <= 1 ? "address" : "addresses" %> 
 </p>
 
@@ -13,6 +15,7 @@
         <th>Street</th>
         <th>Town</th>
         <th>City</th>
+        <th>State</th>
         <th>Country</th>
         <th>Zip Code</th>
         <th>Mobile No.</th>
