@@ -7,6 +7,7 @@ class Address < ApplicationRecord
             :country,
             :zip_code,
             :mobile_number,
-            :user_id, 
+            :user_id,
+            :state,
             presence: true
 end
