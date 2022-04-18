@@ -7,7 +7,7 @@ body {
 }
 
 .main-container {
-  @apply w-full md:w-3/5 md:mx-auto md:max-w-4xl p-4 md:p-0;
+  @apply w-full md:w-3/5 md:mx-auto md:max-w-4xl p-4 md:p-0 md:pb-6;
 }
 
 a {
@@ -30,7 +30,7 @@ select {
 }
 
 label {
-  @apply mt-2 font-light inline-block;
+  @apply mt-2 font-light inline-block cursor-pointer;
 }
 
 h1, h2 {

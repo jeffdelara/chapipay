@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   
   resources :cart, controller: 'store/cart', except: [:index]
   get '/cart', to: 'store/cart#show'
-  resources :checkout, controller: 'store/checkout'
+
+  get '/checkout', to: 'store/checkout#show'
+  resources :checkout, controller: 'store/checkout', except: [:index]
+  resources :payments, controller: 'store/payments'
   
   resources :store, controller: 'store/store'
   
