@@ -6,21 +6,19 @@ class Admin::AddressesController < ApplicationController
     @addresses = Address.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @address = @customer.addresses.build
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @address = @customer.addresses.build(address_params)
 
     if @address.save
-      redirect_to admin_customer_path(@customer), notice: "Address was successfully created."
+      redirect_to admin_customer_path(@customer), notice: "Address was successfully created"
     else
       render :new
     end
@@ -28,7 +26,7 @@ class Admin::AddressesController < ApplicationController
 
   def update
     if @address.update(address_params)
-      redirect_to admin_customer_path(@customer), notice: "Address was successfully updated."
+      redirect_to admin_customer_path(@customer), notice: "Address was successfully updated"
     else
       render :edit
     end
@@ -36,7 +34,7 @@ class Admin::AddressesController < ApplicationController
 
   def destroy
     @address.destroy
-    redirect_to admin_customer_path(@customer), notice: "Address was successfully updated."
+    redirect_to admin_customer_path(@customer), notice: "Address was successfully deleted"
   end
 
   private
@@ -45,7 +43,7 @@ class Admin::AddressesController < ApplicationController
     @customer = Customers::CustomerService.find(params[:customer_id])
 
     if @customer.nil?
-      redirect_to admin_customer_path, notice: "Customer does not exist."
+      redirect_to admin_customers_path(@customer), notice: "Customer does not exist"
     end
   end
 
@@ -53,7 +51,7 @@ class Admin::AddressesController < ApplicationController
     @address = @customer.addresses.find_by(id: params[:id])
 
     if @address.nil?
-      redirect_to admin_customer_path(@customer), notice: "Address was successfully updated."
+      redirect_to admin_customer_path(@customer), notice: "No address found"
     end
   end
 

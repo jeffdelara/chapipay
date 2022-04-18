@@ -44,6 +44,10 @@ class Admin::CustomersController < ApplicationController
 
   def set_customer 
     @customer = Customers::CustomerService.find(params[:id])
+
+    if @customer.nil?
+      redirect_to admin_customers_path(@customer), notice: "Customer does not exist"
+    end
   end
   
   def customer_params 
