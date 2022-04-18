@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     get 'addresses', to: 'addresses#index'
     resources :categories
     resources :products
+    resources :orders
     resources :customers do
       resources :addresses, except: :index 
     end
