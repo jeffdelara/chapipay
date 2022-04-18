@@ -17,4 +17,7 @@
           method: :delete, data: { confirm: 'Are you sure?' } 
       %>
   </td>
+  <% if @addresses %>
+    <td><%= link_to 'Add address', new_admin_customer_address_path(address.user, address)%></td>
+  <% end %>
 </tr>
