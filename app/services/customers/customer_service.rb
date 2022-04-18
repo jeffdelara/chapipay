@@ -22,5 +22,18 @@ module Customers
       Customer.find_by(:id => id, :admin => false)
     end
 
+    def self.cart_exists?(id)
+      cart = CartItem.find_by(:user_id => id)
+      if cart 
+        return cart 
+      else 
+        return false 
+      end
+    end
+
+    def self.get_addresses(id)
+      Address.where(:user_id => id)
+    end
+
   end
 end
