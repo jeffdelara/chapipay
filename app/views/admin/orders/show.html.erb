@@ -1,0 +1,19 @@
+<h1> Order # <%= @order.id %> </h1>
+
+<p>
+  <b> Customer Details: </b>
+  <%= @order.customer_details %><br>
+  
+  <b> Delivery Details: </b>
+  <%= @order.delivery_details %><br>
+
+  <b> Total: </b>
+  <%= @order.total %><br>
+
+  <b> Order Status: </b>
+  <%= @order.status %><br><br>
+
+  <%= link_to 'Edit', edit_admin_order_path(@order) %>
+  <%= link_to 'Delete', admin_order_path(@order), 
+            :method => :delete, :data => {:confirm => 'Are you sure?'} %>
+</p>
