@@ -8,7 +8,7 @@
       <% @addresses.each do |address| %>
         <div>
           <label class="p-2 rounded hover:bg-gray-100">
-          <%= f.radio_button :address_id, address.id, :required => true %>
+          <%= f.radio_button :id, address.id, :required => true %>
           <%= address.house_number %>
           <%= address.street %>
           <%= address.town %>

@@ -1,8 +1,9 @@
 class Store::PaymentsController < ApplicationController
   def index
-    @address = current_user.addresses.find_by(:id => params[:address_id])
+    @address = current_user.addresses.find_by(:id => address_params[:id])
     
     unless @address 
+      byebug
       @address = current_user.addresses.create(address_params)
     end
 
@@ -58,6 +59,7 @@ class Store::PaymentsController < ApplicationController
 
   def address_params
     params.require(:address).permit(
+      :id, 
       :house_number, 
       :street, 
       :town, 
