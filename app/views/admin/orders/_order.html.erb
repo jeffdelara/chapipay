@@ -1,0 +1,12 @@
+<tr>
+  <td><%= order.customer_details %></td>
+  <td><%= order.delivery_details %></td>
+  <td><%= order.total %></td>
+  <td><%= order.status %></td>
+  <td><%= link_to 'Show', admin_customer_order_path(order.user, order) %></td>
+  <td><%= link_to 'Edit', edit_admin_customer_order_path(order.user, order) %></td>
+  <td><%= link_to 'Delete', admin_customer_order_path(order.user, order),
+        method: :delete, data: { confirm: 'Are you sure?' }
+      %>
+  </td>
+</tr>
