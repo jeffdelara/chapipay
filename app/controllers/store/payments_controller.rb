@@ -33,6 +33,7 @@ class Store::PaymentsController < ApplicationController
   def complete 
     if session[:status] == 'succeeded'
       @message = Payment::Message::SUCCESS
+      # create order and mark it PROCESSING
     end 
 
     if session[:status] == 'awaiting_next_action'
@@ -41,6 +42,7 @@ class Store::PaymentsController < ApplicationController
 
       if paymongo.payment_success?(response) 
         @message = Payment::Message::SUCCESS
+        # create order and mark it PROCESSING
       else 
         @message = Payment::Message::ERROR
       end
