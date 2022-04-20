@@ -3,7 +3,6 @@ class Store::PaymentsController < ApplicationController
     @address = current_user.addresses.find_by(:id => address_params[:id])
     
     unless @address 
-      byebug
       @address = current_user.addresses.create(address_params)
     end
 
