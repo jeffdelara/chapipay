@@ -9,7 +9,7 @@
 
 <%= link_to 'New Order', new_admin_customer_order_path(@customer) %>
 
-<% if @customer.addresses.count >= 1%>
+<% if @customer.addresses.count >= 1 %>
   <table>
     <thead>
       <tr>
@@ -17,6 +17,7 @@
         <th>Street</th>
         <th>Town</th>
         <th>City</th>
+        <th>State</th>
         <th>Country</th>
         <th>Zip Code</th>
         <th>Mobile No.</th>

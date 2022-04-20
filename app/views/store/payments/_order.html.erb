@@ -1,0 +1,77 @@
+<div id="orders">
+  <h2>Orders</h2>
+  <div class="overflow-x-auto">
+    <% if @cart_items.present? %>
+      <table>
+          <thead>
+              <tr>
+                  <th class="w-10">
+                      <div></div>
+                  </th>
+                  <th>
+                      <div>Product</div>
+                  </th>
+                  <th>
+                      <div>Price</div>
+                  </th>
+                  <th>
+                      <div class="text-center">Quantity</div>
+                  </th>
+                  <th>
+                      <div class="text-center">Subtotal</div>
+                  </th>
+              </tr>
+          </thead>
+          <tbody>
+            <% @cart_items.each do |item| %>
+              <tr>
+                  <td>
+                      <div class="flex items-center">
+                          <div class="w-12 h-12 flex-shrink-0 mr-2 sm:mr-3">
+                            <div>
+                            <% if item.product.images.attached? %>
+                              <%= image_tag item.product.images.first, class: 'object-cover w-24 h-12 shadow-none' %>
+                            <% end %>
+                            </div>
+                          </div>
+                      </div>
+                  </td>
+                  <td>
+                      <div class="text-left whitespace-normal max-w-xs">
+                        <%= item.product.name %>
+                      </div>
+                  </td>
+                  <td>
+                      <div class="text-left">
+                        <%= item.product.price %>
+                      </div>
+                  </td>
+                  <td>
+                      <div class="text-center">
+                        <%= item.quantity %>
+                      </div>
+                      
+                  </td>
+                  <td>
+                    <div class="subtotals text-center" 
+                      data-subtotal="<%= item.quantity * item.product.price %>" 
+                      id="cart_item_subtotal_<%= item.id %>">
+                      <%= item.quantity * item.product.price %>
+                    </div>
+                  </td>
+              </tr>
+            <% end %>
+          </tbody>
+
+          <tfoot class='border-t'>
+            <tr>
+              <th colspan="4" class='text-left p-2'>Total</th>
+              <th>
+                <div class="text-center" id="cart_item_total"><%= compute_cart_total(@cart_items) %>
+              </th>
+            </tr>
+          </tfoot>
+          </table>
+      <% end %>
+    </div>
+</div>

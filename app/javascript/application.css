@@ -47,7 +47,7 @@ h1, h2 {
 }
 
 img {
-  @apply rounded shadow-lg;
+  @apply rounded;
 }
 
 .notice {
