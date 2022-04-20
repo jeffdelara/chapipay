@@ -19,6 +19,16 @@ module Cart
       customer.cart_items
     end
 
+    def self.get_total(customer)
+      cart_items = customer.cart_items
+      
+      total = cart_items.reduce(0) do |acc, item|
+        acc + (item.product.price * item.quantity)
+      end
+
+      total
+    end
+
     def self.remove(user, id)
       cart_item = user.cart_items.find(id)
       cart_item.destroy

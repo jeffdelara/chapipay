@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   get '/checkout', to: 'store/checkout#show'
   resources :checkout, controller: 'store/checkout', except: [:index]
+  
+  get '/payments/complete', to: 'store/payments#complete'
   resources :payments, controller: 'store/payments'
   
   resources :store, controller: 'store/store'

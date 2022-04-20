@@ -1,14 +1,14 @@
 <h2>Delivery Address</h2>
 
 <div>
-  <%= form_with url: payments_path, method: :post do |f| %>
+  <%= form_with url: payments_path, method: :get do |f| %>
 
     <% if @addresses.present? %>
     <div class="grid grid-cols-3 gap-6 pb-6">
       <% @addresses.each do |address| %>
         <div>
           <label class="p-2 rounded hover:bg-gray-100">
-          <%= f.radio_button :address_id, address.id %>
+          <%= f.radio_button :address_id, address.id, :required => true %>
           <%= address.house_number %>
           <%= address.street %>
           <%= address.town %>
@@ -61,87 +61,87 @@
   
 
   <div class="w-full bg-white mt-6">
-  <h2>Orders</h2>
-  <div class="">
-    <div class="overflow-x-auto">
-      <% if @cart_items.present? %>
-      <%= form_with url: checkout_index_path, method: :post do |f| %>
-        <table>
-            <thead>
-                <tr>
-                    <th class="w-10">
-                        <div></div>
-                    </th>
-                    <th>
-                        <div>Product</div>
-                    </th>
-                    <th>
-                        <div>Price</div>
-                    </th>
-                    <th>
-                        <div class="text-center">Quantity</div>
-                    </th>
-                    <th>
-                        <div class="text-center">Subtotal</div>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-              <% @cart_items.each do |item| %>
-                <tr>
-                    <td>
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 flex-shrink-0 mr-2 sm:mr-3">
-                              <div>
-                              <% if item.product.images.attached? %>
-                                <%= image_tag item.product.images.first, class: 'object-cover w-24 h-12 shadow-none' %>
-                              <% end %>
+    <h2>Orders</h2>
+    <div class="">
+      <div class="overflow-x-auto">
+        <% if @cart_items.present? %>
+        <%= form_with url: checkout_index_path, method: :post do |f| %>
+          <table>
+              <thead>
+                  <tr>
+                      <th class="w-10">
+                          <div></div>
+                      </th>
+                      <th>
+                          <div>Product</div>
+                      </th>
+                      <th>
+                          <div>Price</div>
+                      </th>
+                      <th>
+                          <div class="text-center">Quantity</div>
+                      </th>
+                      <th>
+                          <div class="text-center">Subtotal</div>
+                      </th>
+                  </tr>
+              </thead>
+              <tbody>
+                <% @cart_items.each do |item| %>
+                  <tr>
+                      <td>
+                          <div class="flex items-center">
+                              <div class="w-12 h-12 flex-shrink-0 mr-2 sm:mr-3">
+                                <div>
+                                <% if item.product.images.attached? %>
+                                  <%= image_tag item.product.images.first, class: 'object-cover w-24 h-12 shadow-none' %>
+                                <% end %>
+                                </div>
                               </div>
-                            </div>
+                          </div>
+                      </td>
+                      <td>
+                          <div class="text-left whitespace-normal max-w-xs">
+                            <%= item.product.name %>
+                          </div>
+                      </td>
+                      <td>
+                          <div class="text-left font-medium price">
+                            <%= item.product.price %>
+                          </div>
+                      </td>
+                      <td>
+                          <div class="text-lg text-center">
+                            <%= item.quantity %>
+                          </div>
+                          
+                      </td>
+                      <td>
+                        <div class="subtotals price text-center" 
+                          data-subtotal="<%= item.quantity * item.product.price %>" 
+                          id="cart_item_subtotal_<%= item.id %>">
+                          <%= item.quantity * item.product.price %>
                         </div>
-                    </td>
-                    <td>
-                        <div class="text-left whitespace-normal max-w-xs">
-                          <%= item.product.name %>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="text-left font-medium price">
-                          <%= item.product.price %>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="text-lg text-center">
-                          <%= item.quantity %>
-                        </div>
-                        
-                    </td>
-                    <td>
-                      <div class="subtotals price text-center" 
-                        data-subtotal="<%= item.quantity * item.product.price %>" 
-                        id="cart_item_subtotal_<%= item.id %>">
-                        <%= item.quantity * item.product.price %>
-                      </div>
-                    </td>
-                </tr>
-              <% end %>
-            </tbody>
+                      </td>
+                  </tr>
+                <% end %>
+              </tbody>
 
-            <tfoot class='price border-t'>
-              <tr>
-                <th colspan="4" class='text-left p-2'>Total</th>
-                <th>
-                  <div id="cart_item_total"><%= compute_cart_total(@cart_items) %>
-                </th>
-              </tr>
-            </tfoot>
-            </table>
-            <div class='text-right'>
-            <%= link_to 'Edit cart', cart_index_path, class: 'mr-6' %>
-            <%= f.submit 'Proceed to Payment', class: 'btn' %>
-            </div>
+              <tfoot class='price border-t'>
+                <tr>
+                  <th colspan="4" class='text-left p-2'>Total</th>
+                  <th>
+                    <div id="cart_item_total"><%= compute_cart_total(@cart_items) %>
+                  </th>
+                </tr>
+              </tfoot>
+              </table>
+              <div class='text-right'>
+              <%= link_to 'Edit cart', cart_index_path, class: 'mr-6' %>
+              <%= f.submit 'Proceed to Payment', class: 'btn' %>
+              </div>
+          <% end %>
         <% end %>
-      <% end %>
         </div>
     </div>
   </div>

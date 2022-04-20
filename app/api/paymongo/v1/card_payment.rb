@@ -2,9 +2,10 @@ module Paymongo
   module V1
     class CardPayment
       include ApiExceptions
-      BASE_URL = 'https://api.paymongo.com/v1/'
+      BASE_URL = 'https://api.paymongo.com/v1'
       PAYMENT_INTENTS = 'payment_intents'
       PAYMENT_METHODS = 'payment_methods'
+      RETURN_URL = Settings.PAYMONGO_RETURN_URL
       PUBLIC_KEY = Rails.application.credentials.paymongo[:public_key] 
       SECRET_KEY = Rails.application.credentials.paymongo[:secret_key]
 
@@ -12,6 +13,24 @@ module Paymongo
         http = Net::HTTP.new(url.host, url.port)
         http.use_ssl = true
         http 
+      end
+
+      def retrieve_payment_intent(payment_intent_id)
+        url = prepare_url("#{PAYMENT_INTENTS}/#{payment_intent_id}")
+        http = prepare_http(url)
+
+        request = Net::HTTP::Get.new(url)
+        request["Accept"] = 'application/json'
+        request.basic_auth(SECRET_KEY, '')
+
+        response = http.request(request)
+
+        return JSON.parse response.read_body if response.is_a? Net::HTTPOK
+        raise BadRequest
+      end
+
+      def payment_success?(response) 
+        response['data']['attributes']['status'] == 'succeeded'
       end
 
       def prepare_url(url)
@@ -27,7 +46,7 @@ module Paymongo
         request 
       end
 
-      def create_payment_intent(amount, description='donate')
+      def create_payment_intent(amount, description='chapipay')
         payload = {
           data: {
             attributes: {
@@ -53,20 +72,20 @@ module Paymongo
         raise BadRequest
       end
 
-      def create_payment_method(card, billing=nil)
+      def create_payment_method(card)
         payload = {
           data: {
             attributes: {
               details: {
                 card_number: card[:card_number],
-                exp_month: card[:exp_month],
-                exp_year: card[:exp_year],
+                exp_month: card[:exp_month].to_i,
+                exp_year: card[:exp_year].to_i,
                 cvc: card[:cvc],
               }, 
               type: 'card', 
               billing: {
-                name: billing[:name], 
-                email: billing[:email]
+                name: card[:name], 
+                email: card[:email]
               }
             }
           }
@@ -85,7 +104,8 @@ module Paymongo
           data: {
             attributes: {
               payment_method: payment_method_id, 
-              client_key: client_key
+              client_key: client_key, 
+              return_url: RETURN_URL
             }
           }
         }

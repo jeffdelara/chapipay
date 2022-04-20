@@ -1,2 +1,59 @@
-<h1>Store::Payments#index</h1>
-<p>Find me in app/views/store/payments/index.html.erb</p>
+
+<h1>Payment</h1>
+<div class="grid grid-cols-2 gap-6 divide-x">
+  <div id="payment-form">
+    <h2>Credit Card</h2>
+    <%= form_with model: CreditCardPaymentInfo.new, url: payments_path, :method => :post do |f| %>
+      <%= f.label :name, 'Name on Card' %>
+      <%= f.text_field :name %>
+      
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+
+      <%= f.label :card_number %>
+      <%= f.text_field :card_number %>
+
+      <div class="flex gap-6 mb-6">
+        <div>
+          <%= f.label :exp_month, 'Month' %>
+          <%= f.text_field :exp_month %>
+        </div>
+
+        <div>
+          <%= f.label :exp_year, 'Year' %>
+          <%= f.text_field :exp_year %>
+        </div>
+
+        <div>
+          <%= f.label :cvc, 'CVC' %>
+          <%= f.text_field :cvc %>
+        </div>
+      </div>
+
+      <%= f.submit "Complete Payment", class: 'w-full' %>
+      <%= image_tag 'credit-card.png', class: 'shadow-none h-6 mx-auto' %>
+    <% end %>
+  </div>
+
+  <div class="pl-6">
+    <%= render 'order' %>
+
+    <div id="address">
+      <h2>Delivery Address</h2>
+        <div class="text-sm">
+          <%= @address.house_number %>
+          <%= @address.street %>,
+          <%= @address.town %>,<br>
+          <%= @address.city %>
+          <%= @address.state %><br>
+          <%= @address.country %><br>
+          <%= @address.zip_code %><br>
+          <%= @address.mobile_number %>
+        </div>
+    </div>
+    
+  </div>
+</div>
+
+
+
