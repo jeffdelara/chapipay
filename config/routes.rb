@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   
   get '/payments/complete', to: 'store/payments#complete'
   resources :payments, controller: 'store/payments'
+
+  post '/card-payments', to: 'store/card_payments#create'
   
   resources :store, controller: 'store/store'
   

@@ -24,8 +24,12 @@ module Payment
         payment_method_id, 
         client_key
       )
-
-      return response
+      
+      return { 
+        :status => response['data']['attributes']['status'],
+        :payment_intent_id => response['data']['id'],
+        :return_url => response['data']['attributes']['next_action']['redirect']['url']
+      }
     end
 
   end

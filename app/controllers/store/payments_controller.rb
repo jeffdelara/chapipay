@@ -12,33 +12,11 @@ class Store::PaymentsController < ApplicationController
   def show
   end
 
-  def create
-    amount = Cart::CartService.get_total(current_user)
-    description = "#{current_user.email}: #{amount} #{Time.current}"
-    
-    response = Payment::PaymongoCreditCard.make_payment(
-      credit_card_params, 
-      amount, 
-      description
-    )
-
-    status = response['data']['attributes']['status']
-
-    if status == 'awaiting_next_action'
-      session[:status] = status
-      session[:payment_intent_id] = response['data']['id']
-      return_url = response['data']['attributes']['next_action']['redirect']['url']
-      redirect_to return_url
-    elsif status == 'succeeded'
-      session[:status] = status
-      redirect_to payments_complete_path
-    end
-  end
-
   def complete 
     if session[:status] == 'succeeded'
       @message = Payment::Message::SUCCESS
       # create order and mark it PROCESSING
+      # clear cart
     end 
 
     if session[:status] == 'awaiting_next_action'
@@ -48,6 +26,7 @@ class Store::PaymentsController < ApplicationController
       if paymongo.payment_success?(response) 
         @message = Payment::Message::SUCCESS
         # create order and mark it PROCESSING
+        # clear cart
       else 
         @message = Payment::Message::ERROR
       end
