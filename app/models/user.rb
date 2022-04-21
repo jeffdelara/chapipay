@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :addresses, dependent: :destroy
   has_many :cart_items
   has_many :products, :through => :cart_items
+  has_many :orders
 
   def customer? 
     !self.admin?
