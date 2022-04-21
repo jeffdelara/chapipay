@@ -5,28 +5,28 @@
     <h2>Credit Card</h2>
     <%= form_with model: CreditCardPaymentInfo.new, url: payments_path, :method => :post do |f| %>
       <%= f.label :name, 'Name on Card' %>
-      <%= f.text_field :name %>
+      <%= f.text_field :name, :required => true %>
       
       <%= f.label :email %>
-      <%= f.email_field :email %>
+      <%= f.email_field :email, :required => true %>
 
       <%= f.label :card_number %>
-      <%= f.text_field :card_number %>
+      <%= f.text_field :card_number, :required => true %>
 
       <div class="flex gap-6 mb-6">
         <div>
           <%= f.label :exp_month, 'Month' %>
-          <%= f.text_field :exp_month %>
+          <%= f.text_field :exp_month, :required => true %>
         </div>
 
         <div>
           <%= f.label :exp_year, 'Year' %>
-          <%= f.text_field :exp_year %>
+          <%= f.text_field :exp_year, :required => true %>
         </div>
 
         <div>
           <%= f.label :cvc, 'CVC' %>
-          <%= f.text_field :cvc %>
+          <%= f.text_field :cvc, :required => true %>
         </div>
       </div>
 

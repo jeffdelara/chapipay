@@ -1,18 +1,19 @@
 <h2>Delivery Address</h2>
 
 <div>
-  <%= form_with url: payments_path, method: :get do |f| %>
+  <%= form_with model: Address.new, url: payments_path, method: :get do |f| %>
 
     <% if @addresses.present? %>
     <div class="grid grid-cols-3 gap-6 pb-6">
       <% @addresses.each do |address| %>
         <div>
           <label class="p-2 rounded hover:bg-gray-100">
-          <%= f.radio_button :address_id, address.id, :required => true %>
+          <%= f.radio_button :id, address.id, :required => true %>
           <%= address.house_number %>
           <%= address.street %>
           <%= address.town %>
           <%= address.city %>
+          <%= address.state %>
           <%= address.country %>
           <%= address.zip_code %>
           <%= address.mobile_number %>
@@ -40,6 +41,11 @@
         <div>
           <%= f.label :city %>
           <%= f.text_field :city %>
+        </div>
+
+        <div>
+          <%= f.label :state, 'Region/Province' %>
+          <%= f.text_field :state %>
         </div>
 
         <div>
