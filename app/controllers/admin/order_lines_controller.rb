@@ -32,7 +32,7 @@ class Admin::OrderLinesController < ApplicationController
     if @order_line.update(order_line_params)
       redirect_to admin_order_order_lines_path(@order_line), notice: 'Order line was successfully updated.'
     else
-      render: edit
+      render :edit
     end
   end
 
