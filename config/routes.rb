@@ -17,12 +17,16 @@ Rails.application.routes.draw do
   namespace :admin do 
     get '/', to: 'dashboard#index'
     get '/dashboard', to: 'dashboard#index'
-    get '/addresses', to: 'addresses#index'
+    get 'addresses', to: 'addresses#index'
+    get 'orders', to: 'orders#index'
     resources :categories
     resources :products
-    resources :orders
+    # resources :orders do
+    #   resources :order_lines
+    # end
     resources :customers do
-      resources :addresses, except: [ :index ]
+      resources :addresses, except: :index
+      resources :orders, except: :index
     end
     
   end

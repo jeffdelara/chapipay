@@ -2,11 +2,12 @@
 
 <%= link_to 'Back to customers', admin_customers_path %>
 <%= link_to 'Add address', new_admin_customer_address_path(@customer)%>
-<p>Name: <%= "#{@customer.first_name} #{@customer.last_name}" %></p>
-<p>Email: <%= @customer.email %></p>
-<p>Customer have <%= @customer.addresses.count %> registered 
-  <%= @customer.addresses.count <= 1 ? "address" : "addresses" %>
-</p>
+<p> Name: <%= "#{@customer.first_name} #{@customer.last_name}" %></p>
+<p> Email: <%= @customer.email %></p>
+<p> Customer has <%= @customer.addresses.count %> registered <%= @customer.addresses.count <= 1 ? "address" : "addresses" %>
+    and <%= @customer.orders.count %> <%= @customer.orders.count <= 1 ? "order" : "orders" %> .</p>
+
+<%= link_to 'New Order', new_admin_customer_order_path(@customer) %>
 
 <% if @customer.addresses.count >= 1 %>
   <table>
@@ -25,6 +26,23 @@
     </thead>
     <tbody>
       <%= render @customer.addresses %>
+    </tbody>
+  </table>
+<% end %>
+
+<br>
+<% if @customer.orders.count >= 1%>
+  <table>
+    <thead>
+      <tr>
+        <th>Customer Details</th>
+        <th>Delivery Details</th>
+        <th>Total</th>
+        <th>Order Status</th>
+      </tr>
+    </thead>
+    <tbody>
+    <%= render @customer.orders %>
     </tbody>
   </table>
 <% end %>
