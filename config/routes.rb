@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     get '/dashboard', to: 'dashboard#index'
     get 'addresses', to: 'addresses#index'
     get 'orders', to: 'orders#index'
+    get 'pending_orders', to: 'pending_orders#index'
     resources :categories
     resources :products
     # resources :orders do
