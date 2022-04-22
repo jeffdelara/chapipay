@@ -19,7 +19,7 @@
     <%= form.text_field :delivery_details %><br>
 
     <%= form.label :order_status %><br>
-    <%= form.select :status, ['Pending', 'Processing', 'Completed'] %>
+    <%= form.select :status, Order::STATUSES %>
   </div>
 
   <div class="actions">
