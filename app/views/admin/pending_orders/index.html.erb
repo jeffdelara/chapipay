@@ -1,0 +1,26 @@
+<%= link_to 'Back to Orders', admin_orders_path, class: 'btn' %>
+
+<h1>Pending Orders</h1>
+<table>
+  <thead>
+    <tr>
+      <th> User Email </th>
+      <th> Customer Details </th>
+      <th> Delivery Details </th>
+      <th> Total </th>
+      <th> Status </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pending_orders.each do |p_o| %>
+      <tr>
+        <td><%= p_o.user.email %></td>
+        <td><%= p_o.customer_details %></td>
+        <td><%= p_o.delivery_details %></td>
+        <td><%= p_o.total %></td>
+        <td><%= p_o.status %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

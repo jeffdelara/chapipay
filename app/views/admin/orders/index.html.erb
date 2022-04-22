@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<%= link_to 'Back to Dashboard', admin_dashboard_path, class: 'btn' %>
+<%= link_to 'Pending Orders', admin_pending_orders_path, class: 'btn' %>
+
 <h1>Orders</h1>
 <table>
   <thead>
@@ -25,6 +27,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-<%= link_to 'Back to Dashboard', admin_dashboard_path %>
