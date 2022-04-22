@@ -18,12 +18,34 @@ class Store::CardPaymentsController < ApplicationController
       redirect_to response[:return_url]
     elsif status == 'succeeded'
       session[:status] = status
-      redirect_to payments_complete_path
+      redirect_to card_payments_complete_path
+    end
+  end
+
+  def complete 
+    if session[:status] == 'succeeded'
+      @message = Payment::Message::SUCCESS
+      # create order and mark it PROCESSING
+      # clear cart
+    end 
+
+    if session[:status] == 'awaiting_next_action'
+      paymongo = Paymongo::V1::CardPayment.new 
+      response = paymongo.retrieve_payment_intent(session[:payment_intent_id])
+
+      if paymongo.payment_success?(response) 
+        @message = Payment::Message::SUCCESS
+        # create order and mark it PROCESSING
+        # clear cart
+      else 
+        @message = Payment::Message::ERROR
+      end
     end
   end
 
 
   private 
+
   def credit_card_params
     params.require(:credit_card_payment_info).permit(
       :name, 

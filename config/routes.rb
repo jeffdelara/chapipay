@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :payments, controller: 'store/payments'
 
   post '/card-payments', to: 'store/card_payments#create'
+  get '/card-payments/complete', to: 'store/card_payments#complete'
   
   resources :store, controller: 'store/store'
   

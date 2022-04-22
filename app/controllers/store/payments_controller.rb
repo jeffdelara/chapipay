@@ -12,26 +12,7 @@ class Store::PaymentsController < ApplicationController
   def show
   end
 
-  def complete 
-    if session[:status] == 'succeeded'
-      @message = Payment::Message::SUCCESS
-      # create order and mark it PROCESSING
-      # clear cart
-    end 
-
-    if session[:status] == 'awaiting_next_action'
-      paymongo = Paymongo::V1::CardPayment.new 
-      response = paymongo.retrieve_payment_intent(session[:payment_intent_id])
-
-      if paymongo.payment_success?(response) 
-        @message = Payment::Message::SUCCESS
-        # create order and mark it PROCESSING
-        # clear cart
-      else 
-        @message = Payment::Message::ERROR
-      end
-    end
-  end
+  
 
   private
 
@@ -49,14 +30,4 @@ class Store::PaymentsController < ApplicationController
     )
   end
 
-  def credit_card_params
-    params.require(:credit_card_payment_info).permit(
-      :name, 
-      :email, 
-      :card_number, 
-      :exp_month, 
-      :exp_year, 
-      :cvc
-    )
-  end
 end
