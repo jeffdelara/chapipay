@@ -77,3 +77,7 @@ th div {
 tbody {
   @apply text-sm divide-y divide-gray-100;
 }
+
+small {
+  @apply uppercase;
+}

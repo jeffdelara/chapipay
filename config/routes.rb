@@ -39,6 +39,7 @@ Rails.application.routes.draw do
     get '/', to: 'dashboard#index'
     get '/dashboard', to: 'dashboard#index'
     resources :addresses
+    resources :orders 
   end
 
 end

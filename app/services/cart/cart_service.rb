@@ -34,6 +34,10 @@ module Cart
       cart_item.destroy
     end
 
+    def self.remove_all(user)
+      user.cart_items.destroy_all
+    end
+
     def self.update(id:, quantity:, customer:)
       cart_item = customer.cart_items.find_by(:id => id)
       cart_item.quantity = quantity
