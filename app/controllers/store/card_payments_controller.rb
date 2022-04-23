@@ -4,6 +4,7 @@ class Store::CardPaymentsController < ApplicationController
     amount = Cart::CartService.get_total(current_user)
     description = "#{current_user.email}: #{amount} #{Time.current}"
     
+    begin 
     response = Payment::PaymongoCreditCard.make_payment(
       credit_card_params, 
       amount, 
@@ -20,6 +21,11 @@ class Store::CardPaymentsController < ApplicationController
     elsif status == 'succeeded'
       session[:status] = status
       redirect_to card_payments_complete_path
+    end
+
+    rescue ApiExceptions::BadRequest 
+      # TODO: Change to failed page 
+      redirect_to root_path
     end
   end
 
