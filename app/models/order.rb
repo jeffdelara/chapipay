@@ -7,6 +7,6 @@ class Order < ApplicationRecord
   validates :delivery_details, presence: true
   validates :status, presence: true
 
-  STATUSES = ['pending', 'processing', 'completed']
+  STATUSES = ['pending', 'processing', 'paid', 'completed']
 
 end

@@ -1,0 +1,36 @@
+<h1>Order</h2>
+<div class="flex flex-col gap-5">
+  <div class="grid grid-cols-2">
+    <div>
+      <small>Transaction ID</small><br>
+      <%= @order.transaction_id %>
+    </div>
+
+    <div class="uppercase">
+      <small>Status</small><br>
+      <%= @order.status %>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2">
+    <div>
+      <small>Customer details</small><br>
+      <%= @order.customer_details %>
+    </div>
+
+    <div>
+      <small>Delivery Address</small><br>
+      <%= @order.delivery_details %>
+    </div>
+  </div>
+
+  <div>
+    <small>Order details</small><br>
+    <p>Order lines go here</p>
+  </div>
+
+  <div>
+    <small>Total</small><br>
+    <%= @order.total %>
+  </div>
+</div>
