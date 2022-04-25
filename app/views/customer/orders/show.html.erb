@@ -26,7 +26,22 @@
 
   <div>
     <small>Order details</small><br>
-    <p>Order lines go here</p>
+    <table>
+      <thead>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+      <thead>
+    <% @order.order_lines.each do |line| %>
+      <tr>
+        <td><%= line.product_name %></td>
+        <td class='text-center'><%= line.price %></td>
+        <td class='text-center'><%= line.quantity %></td>
+        <td class='text-center'><%= line.subtotal%></td>
+      </tr>
+    <% end %>
+    </table>
   </div>
 
   <div>

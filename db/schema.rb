@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_22_130517) do
+ActiveRecord::Schema.define(version: 2022_04_25_101710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,10 @@ ActiveRecord::Schema.define(version: 2022_04_22_130517) do
     t.integer "quantity"
     t.decimal "subtotal"
     t.string "sku"
+    t.bigint "user_id", null: false
+    t.bigint "order_id", null: false
+    t.index ["order_id"], name: "index_order_lines_on_order_id"
+    t.index ["user_id"], name: "index_order_lines_on_user_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -153,6 +157,8 @@ ActiveRecord::Schema.define(version: 2022_04_22_130517) do
   add_foreign_key "addresses", "users"
   add_foreign_key "cart_items", "products"
   add_foreign_key "cart_items", "users"
+  add_foreign_key "order_lines", "orders"
+  add_foreign_key "order_lines", "users"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
 end
