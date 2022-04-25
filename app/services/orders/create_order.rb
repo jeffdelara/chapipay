@@ -27,7 +27,7 @@ module Orders
         line[:quantity] = item.quantity 
         line[:subtotal] = item.product.price * item.quantity
         line[:sku] = item.product.sku 
-        line[:user_id] = user.id
+        line[:user_id] = user_id
         line[:order_id] = nil
         order_lines << line 
       end
@@ -39,7 +39,7 @@ module Orders
           delivery_details: delivery_details, 
           status: status,
           total: total, 
-          user: user, 
+          user_id: user_id, 
           transaction_id: transaction_id
         )
 
