@@ -45,6 +45,7 @@ module Orders
 
         order_lines.each do |line|
           line[:order_id] = order.id 
+          
           OrderLine.create(line)
         end
       end
