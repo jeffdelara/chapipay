@@ -26,21 +26,22 @@
 
   <div>
     <small>Order details</small><br>
+    
     <table>
       <thead>
-        <th>Product</th>
+        <th class="text-left">Product</th>
         <th>Price</th>
         <th>Quantity</th>
         <th>Subtotal</th>
-      <thead>
-    <% @order.order_lines.each do |line| %>
-      <tr>
-        <td><%= line.product_name %></td>
-        <td class='text-center'><%= line.price %></td>
-        <td class='text-center'><%= line.quantity %></td>
-        <td class='text-center'><%= line.subtotal%></td>
-      </tr>
-    <% end %>
+      </thead>
+      <% @order.order_lines.each do |line| %>
+        <tr>
+          <td><%= truncate line.product_name, :length => 50 %></td>
+          <td class="text-center"><%= line.price %></td>
+          <td class="text-center"><%= line.quantity %></td>
+          <td class="text-center"><%= line.subtotal %></td>
+        </tr>
+      <% end %>
     </table>
   </div>
 

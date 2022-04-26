@@ -8,13 +8,46 @@
   <div class='col-span-3'>
     <h2 class='text-2xl'>My Orders</h2>
     <% @orders.each do |order| %>
-      <li>
-        <%= link_to customer_order_path(order) do %>
-        <%= order.transaction_id %>
-        <%= order.total %>
-        <%= order.status %>
-        <% end %>
-      </li>
+      <div class="border rounded text-sm my-2">
+        <div class="p-4 flex gap-6 bg-gray-100">
+          <div>
+            Order placed<br/>
+            <%= human_date order.created_at %>
+          </div>
+
+          <div>
+            Total<br/>
+            <%= order.total %>
+          </div>
+
+          <div>
+            Ship to<br/>
+            <%= order.customer_details %>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="p-4">
+          <table>
+            <thead>
+              <th class="text-left">Product</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Subtotal</th>
+            </thead>
+          <% order.order_lines.each do |line| %>
+            <tr>
+              <td><%= truncate line.product_name, :length => 50 %></td>
+              <td class="text-center"><%= line.price %></td>
+              <td class="text-center"><%= line.quantity %></td>
+              <td class="text-center"><%= line.subtotal %></td>
+            </tr>
+          <% end %>
+          </table>
+        </div>
+
+      </div>
     <% end %>
   </div>
 </div>
