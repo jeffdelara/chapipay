@@ -1,0 +1,34 @@
+<%=  form_with scope: :order_line, url: admin_customer_order_order_line_path, method: :put, locale: true do |form| %>
+  <% if @order_line.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order_line.errors.count, "error") %> prohibited this order line from being saved:</h2>
+
+      <ul>
+        <% @order_line.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :product_name %><br>
+    <%= form.text_field :product_name %><br>
+
+    <%= form.label :price %><br>
+    <%= form.text_field :price %><br>
+
+    <%= form.label :quantity %><br>
+    <%= form.number_field :quantity %><br>
+
+    <%= form.label :subtotal %><br>
+    <%= form.text_field :subtotal %><br>
+
+    <%= form.label :sku %><br>
+    <%= form.text_field :sku %><br>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

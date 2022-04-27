@@ -19,16 +19,17 @@ Rails.application.routes.draw do
     get '/dashboard', to: 'dashboard#index'
     get 'addresses', to: 'addresses#index'
     get 'orders', to: 'orders#index'
+    get 'order_lines', to: 'order_lines#index'
+
     resources :categories
     resources :products
-    # resources :orders do
-    #   resources :order_lines
-    # end
+    
     resources :customers do
       resources :addresses, except: :index
-      resources :orders, except: :index
+      resources :orders, except: :index do
+        resources :order_lines, except: :index
+      end
     end
-    
   end
 
   namespace :customer do 

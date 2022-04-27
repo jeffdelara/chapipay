@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+<h1>Order Lines</h1>
+<table>
+  <thead>
+    <tr>
+      <th> User Email </th>
+      <th> Order ID </th>
+      <th> Product Name </th>
+      <th> Price </th>
+      <th> Quantity </th>
+      <th> Subtotal </th>
+      <th> SKU </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @order_lines.each do |order_line| %>
+      <tr>
+        <td><%= order_line.user.email %></td>
+        <td><%= order_line.order.id %></td>
+        <td><%= order_line.product_name %></td>
+        <td><%= order_line.price %></td>
+        <td><%= order_line.subtotal %></td>
+        <td><%= order_line.sku %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'Back to Dashboard', admin_dashboard_path %>
