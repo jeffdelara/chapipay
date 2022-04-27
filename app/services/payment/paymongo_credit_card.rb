@@ -24,8 +24,20 @@ module Payment
         payment_method_id, 
         client_key
       )
+      
+      # awaiting_next_action
+      status = response['data']['attributes']['status']
+      return_url = nil 
 
-      return response
+      if status == 'awaiting_next_action'
+        return_url = response['data']['attributes']['next_action']['redirect']['url']
+      end
+
+      return { 
+        :status => response['data']['attributes']['status'],
+        :payment_intent_id => response['data']['id'],
+        :return_url => return_url
+      }
     end
 
   end

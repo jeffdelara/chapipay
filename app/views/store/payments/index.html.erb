@@ -3,7 +3,7 @@
 <div class="grid grid-cols-2 gap-6 divide-x">
   <div id="payment-form">
     <h2>Credit Card</h2>
-    <%= form_with model: CreditCardPaymentInfo.new, url: payments_path, :method => :post do |f| %>
+    <%= form_with model: CreditCardPaymentInfo.new, url: card_payments_path, :method => :post do |f| %>
       <%= f.label :name, 'Name on Card' %>
       <%= f.text_field :name, :required => true %>
       
@@ -29,10 +29,13 @@
           <%= f.text_field :cvc, :required => true %>
         </div>
       </div>
-
+      <%= f.hidden_field :address_id, value: @address.id %>
       <%= f.submit "Complete Payment", class: 'w-full' %>
       <%= image_tag 'credit-card.png', class: 'shadow-none h-6 mx-auto' %>
     <% end %>
+
+    <h2>GCash Payment</h2>
+    <p>add your code / partial here</p>
   </div>
 
   <div class="pl-6">

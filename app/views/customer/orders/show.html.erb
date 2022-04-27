@@ -1,0 +1,52 @@
+<h1>Order</h2>
+<div class="flex flex-col gap-5">
+  <div class="grid grid-cols-2">
+    <div>
+      <small>Transaction ID</small><br>
+      <%= @order.transaction_id %>
+    </div>
+
+    <div class="uppercase">
+      <small>Status</small><br>
+      <%= @order.status %>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2">
+    <div>
+      <small>Customer details</small><br>
+      <%= @order.customer_details %>
+    </div>
+
+    <div>
+      <small>Delivery Address</small><br>
+      <%= @order.delivery_details %>
+    </div>
+  </div>
+
+  <div>
+    <small>Order details</small><br>
+    
+    <table>
+      <thead>
+        <th class="text-left">Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+      </thead>
+      <% @order.order_lines.each do |line| %>
+        <tr>
+          <td><%= truncate line.product_name, :length => 50 %></td>
+          <td class="text-center"><%= line.price %></td>
+          <td class="text-center"><%= line.quantity %></td>
+          <td class="text-center"><%= line.subtotal %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <div>
+    <small>Total</small><br>
+    <%= @order.total %>
+  </div>
+</div>

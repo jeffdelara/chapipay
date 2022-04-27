@@ -1,1 +1,1 @@
-PAYMONGO_RETURN_URL: "http://localhost:3000/payments/complete"
+PAYMONGO_RETURN_URL: "http://localhost:3000/card-payments/complete"

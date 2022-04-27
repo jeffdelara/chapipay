@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   
   get '/payments/complete', to: 'store/payments#complete'
   resources :payments, controller: 'store/payments'
+
+  post '/card-payments', to: 'store/card_payments#create'
+  get '/card-payments/complete', to: 'store/card_payments#complete'
   
   resources :store, controller: 'store/store'
   
@@ -21,6 +24,7 @@ Rails.application.routes.draw do
     get 'orders', to: 'orders#index'
     get 'order_lines', to: 'order_lines#index'
 
+    get 'pending_orders', to: 'pending_orders#index'
     resources :categories
     resources :products
     
@@ -36,6 +40,11 @@ Rails.application.routes.draw do
     get '/', to: 'dashboard#index'
     get '/dashboard', to: 'dashboard#index'
     resources :addresses
+    resources :orders 
+  end
+
+  namespace :api do 
+    post '/webhook', to: 'webhook#create'
   end
 
 end
