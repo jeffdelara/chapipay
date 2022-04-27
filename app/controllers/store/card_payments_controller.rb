@@ -3,7 +3,8 @@ class Store::CardPaymentsController < ApplicationController
   def create
     amount = Cart::CartService.get_total(current_user)
     description = "#{current_user.email}: #{amount} #{Time.current}"
-    
+    session[:address_id] = credit_card_params[:address_id]
+
     begin 
     response = Payment::PaymongoCreditCard.make_payment(
       credit_card_params, 
@@ -12,7 +13,6 @@ class Store::CardPaymentsController < ApplicationController
     )
 
     status = response[:status]
-    session[:address_id] = credit_card_params[:address_id]
     session[:payment_intent_id] = response[:payment_intent_id]
 
     if status == 'awaiting_next_action'
@@ -23,9 +23,8 @@ class Store::CardPaymentsController < ApplicationController
       redirect_to card_payments_complete_path
     end
 
-    rescue ApiExceptions::BadRequest 
-      # TODO: Change to failed page 
-      redirect_to root_path
+    rescue ApiExceptions::BadRequest, StandardError
+      redirect_to payments_url('address[id]': session[:address_id]), alert: 'Credit card failed.'
     end
   end
 
