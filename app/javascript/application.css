@@ -85,3 +85,7 @@ small {
 .store-title {
   @apply text-gray-500
 }
+
+#cart_item_total {
+  @apply text-center;
+}
