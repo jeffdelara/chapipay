@@ -2,6 +2,8 @@ module Cart
   class CartService 
 
     def self.add(customer, product_id)
+      return false unless Product.find(product_id).in_stock?
+
       cart_item = customer.cart_items.where(
         :product_id => product_id
       ).first_or_create

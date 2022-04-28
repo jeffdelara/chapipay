@@ -18,7 +18,7 @@ class Store::CartController < ApplicationController
     if response 
       redirect_to cart_index_path, notice: 'Item added to cart.'
     else  
-      redirect_to root_path
+      redirect_to root_path, alert: 'Item not available.'
     end
   end
 
