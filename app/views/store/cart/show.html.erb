@@ -67,7 +67,7 @@
                               data-cart-id="<%= item.id %>" 
                               id="cart_item_<%= item.id %>" 
                               name="cart_items[quantity][]" 
-                              class="quantity w-14 rounded border px-1 text-right" 
+                              class="quantity w-14 rounded border px-1 text-center" 
                               min="1" 
                               value="<%= item.quantity %>" />
                           </div>
@@ -92,7 +92,7 @@
                 <tr>
                   <th colspan="4" class='text-left p-2'>Total</th>
                   <th>
-                    <div id="cart_item_total" class="text-center"><%= compute_cart_total(@cart_items) %>
+                    <div id="cart_item_total"><%= compute_cart_total(@cart_items) %>
                   </th>
                 </tr>
               </tfoot>
