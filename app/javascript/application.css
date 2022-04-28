@@ -11,7 +11,7 @@ body {
 }
 
 a {
-  @apply text-indigo-500 hover:text-indigo-700;
+  @apply text-red-400 hover:text-red-700;
 }
 
 input[type="text"], 
@@ -38,8 +38,8 @@ h1, h2 {
 }
 
 .btn, input[type="submit"] {
-  @apply bg-indigo-500 text-white px-3 py-2 text-sm uppercase rounded-sm 
-  hover:bg-indigo-600 hover:text-white cursor-pointer my-3 shadow-md inline-block;
+  @apply bg-red-500 text-white px-3 py-2 text-sm uppercase rounded 
+  hover:bg-red-600 hover:text-white cursor-pointer my-3 inline-block;
 }
 
 .price {
@@ -80,4 +80,8 @@ tbody {
 
 small {
   @apply uppercase;
+}
+
+.store-title {
+  @apply text-gray-500
 }
