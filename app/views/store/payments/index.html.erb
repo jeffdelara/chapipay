@@ -35,7 +35,12 @@
     <% end %>
 
     <h2>GCash Payment</h2>
-    <p>add your code / partial here</p>
+    
+    <%= form_with url: gcash_payments_path, :method => :post do |f| %>
+      <%= f.hidden_field :address_id, value: @address.id %>
+      <%= f.submit "Pay with GCash", class: 'w-full' %>
+    <% end %>
+    
   </div>
 
   <div class="pl-6">
