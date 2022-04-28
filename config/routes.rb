@@ -15,6 +15,10 @@ Rails.application.routes.draw do
   post '/card-payments', to: 'store/card_payments#create'
   get '/card-payments/complete', to: 'store/card_payments#complete'
   
+  post '/gcash-payments', to: 'store/gcash_payments#create'
+  get '/gcash-payments/success', to: 'store/gcash_payments#success'
+  get '/gcash-payments/failed', to: 'store/gcash_payments#failed'
+  
   resources :store, controller: 'store/store'
   
   namespace :admin do 
