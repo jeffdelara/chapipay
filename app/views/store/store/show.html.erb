@@ -8,12 +8,14 @@
   <div class='left'>
     <% if @product.images.attached? %>
       <%= image_tag @product.images.first %>
-      
+
+      <% if @product.images.count > 1 %>      
       <div class='mt-4 grid grid-cols-5 gap-2'>
         <% @product.images.each do |img| %>
           <%= image_tag img.variant(resize_to_limit: [80, 80]), class: 'object-cover w-24 h-12' %>
         <% end %>
       </div>
+      <% end %>
     <% end %>
 
   </div>
