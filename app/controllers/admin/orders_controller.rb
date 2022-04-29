@@ -11,6 +11,7 @@ class Admin::OrdersController < ApplicationController
 
   # GET /admin/customers/1/orders/1
   def show
+    @order_lines = @order.order_lines
   end
 
   # GET /admin/customers/1/orders/new

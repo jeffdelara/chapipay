@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
 
   belongs_to :user
-  has_many :order_lines
+  has_many :order_lines, dependent: :destroy
 
   validates :customer_details, presence: true
   validates :delivery_details, presence: true
