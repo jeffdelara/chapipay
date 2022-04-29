@@ -2,7 +2,7 @@ module Cart
   class CartService 
 
     def self.add(customer, product_id)
-      return false unless Product.find(product_id).in_stock?
+      return false unless Product.find_by(id: product_id)&.in_stock?
 
       cart_item = customer.cart_items.where(
         :product_id => product_id
@@ -23,6 +23,7 @@ module Cart
 
     def self.get_total(customer)
       cart_items = customer.cart_items
+      return 0 if cart_items.count == 0
       
       total = cart_items.reduce(0) do |acc, item|
         acc + (item.product.price * item.quantity)

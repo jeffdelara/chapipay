@@ -30,12 +30,12 @@ class Store::CardPaymentsController < ApplicationController
 
   def complete 
     paymongo = Paymongo::V1::CardPayment.new
-
-    if session[:status] == 'succeeded'
-      response = paymongo.retrieve_payment_intent(
-        session[:payment_intent_id]
-      )
-
+    response = paymongo.retrieve_payment_intent(
+      session[:payment_intent_id]
+    )
+    status = response['data']['attributes']['status']
+    byebug
+    if status == 'succeeded'
       transaction_id = response['data']['attributes']['payments'].first['id']
 
       unless Order.find_by(transaction_id: transaction_id)
@@ -51,11 +51,7 @@ class Store::CardPaymentsController < ApplicationController
         redirect_to customer_order_path(order), notice: 'Payment successful!'
       end
 
-    elsif session[:status] == 'awaiting_next_action'
-      response = paymongo.retrieve_payment_intent(
-        session[:payment_intent_id]
-      )
-      
+    elsif status == 'awaiting_next_action'      
       transaction_id = response['data']['attributes']['payments'].first['id']
 
       if paymongo.payment_success?(response) 
@@ -77,6 +73,9 @@ class Store::CardPaymentsController < ApplicationController
         # fail payment
         @message = Payment::Message::ERROR
       end
+
+    else  
+      @message = Payment::Message::ERROR
     end
 
   end
