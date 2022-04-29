@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<% if @category.image.present? %>
+<% if @category.image.attached? %>
   <%= image_tag @category.image %>
 <% end %>
 
