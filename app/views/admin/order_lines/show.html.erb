@@ -1,0 +1,10 @@
+<h1>Order Line <%= @order_line.id %></h1>
+
+<p>Order ID#: <%= @order_line.order_id %></p>
+<p>Product Name: <%= @order_line.product_name %></p>
+<p>Price: <%= @order_line.price %></p>
+<p>Quantity: <%= @order_line.quantity %> </p>
+<p>Subtotal: <%= @order_line.subtotal %> </p>
+<p>SKU: <%= @order_line.sku %> </p>
+
+<%= link_to 'Back to Customer', admin_customer_path(@order.user) %>

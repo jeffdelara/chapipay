@@ -7,3 +7,27 @@
 
 <%= link_to 'Go to Orders', admin_orders_path %>
 <%= link_to 'Back to Customer', admin_customer_path(@order.user) %>
+
+<br><br>
+<%= link_to 'New Order Line', new_admin_customer_order_order_line_path(@order.user, @order) %>
+
+<br>
+ORDER LINES
+<%# specific order id %>
+<% if @customer.order_lines.count >= 1%>
+  <table>
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+        <th>SKU</th>
+      </tr>
+    </thead>
+    <tbody>
+    <%# @order.order_lines %>
+    <%= render @customer.order_lines %>
+    </tbody>
+  </table>
+<% end %>

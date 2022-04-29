@@ -1,0 +1,13 @@
+<tr>
+  <td><%= order_line.product_name %></td>
+  <td><%= order_line.price %></td>
+  <td><%= order_line.quantity %></td>
+  <td><%= order_line.subtotal %></td>
+  <td><%= order_line.sku %></td>
+  <td><%= link_to 'Show', admin_customer_order_order_line_path(@order.user, order_line.order_id, order_line.id) %></td>
+  <td><%= link_to 'Edit', edit_admin_customer_order_order_line_path(@order.user, order_line.order_id, order_line.id) %></td>
+  <td><%= link_to 'Delete', admin_customer_order_order_line_path(@order.user, order_line.order_id, order_line.id),
+        method: :delete, data: { confirm: 'Are you sure?' }
+      %>
+  </td>
+</tr>
