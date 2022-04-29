@@ -76,7 +76,7 @@ module Paymongo
         http = prepare_http(url)
         request = prepare_request(url, payload, PUBLIC_KEY)
         response = http.request(request)
-
+        p response.body
         return JSON.parse response.read_body if response.is_a? Net::HTTPOK
         raise BadRequest
       end
