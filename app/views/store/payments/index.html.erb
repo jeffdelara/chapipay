@@ -34,8 +34,10 @@
       <%= image_tag 'credit-card.png', class: 'shadow-none h-6 mx-auto' %>
     <% end %>
 
-    <h2>GCash Payment</h2>
-    
+    <hr class="mt-6">
+
+    <h2>Pay with GCash</h2>
+    <%= image_tag 'gcash.png', class: 'h-8 mx-auto' %>
     <%= form_with url: gcash_payments_path, :method => :post do |f| %>
       <%= f.hidden_field :address_id, value: @address.id %>
       <%= f.submit "Pay with GCash", class: 'w-full' %>
