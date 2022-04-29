@@ -1,6 +1,6 @@
 <h1>Address</h1>
-<%= link_to 'Go to addresses', admin_addresses_path %>
-<%= link_to 'Back to customer', admin_customer_path(@address.user) %>
+
+<%= link_to 'Back to customer', admin_customer_path(@address.user), class: 'btn' %>
 <p>House number: <%= @address.house_number %></p>
 <p>Street: <%= @address.street %></p>
 <p>Town: <%= @address.town %></p>

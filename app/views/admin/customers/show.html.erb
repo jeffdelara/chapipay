@@ -1,7 +1,8 @@
 <h1>Customer</h1>
 
-<%= link_to 'Back to customers', admin_customers_path %>
-<%= link_to 'Add address', new_admin_customer_address_path(@customer)%>
+<%= link_to 'To customers', admin_customers_path, class: 'btn' %>
+<%= link_to 'To addresses', admin_addresses_path, class: 'btn' %>
+<%= link_to 'Add address', new_admin_customer_address_path(@customer), class: 'btn'%>
 <p> Name: <%= "#{@customer.first_name} #{@customer.last_name}" %></p>
 <p> Email: <%= @customer.email %></p>
 <p> Customer has <%= @customer.addresses.count %> registered <%= @customer.addresses.count <= 1 ? "address" : "addresses" %>
@@ -21,7 +22,7 @@
         <th>Country</th>
         <th>Zip Code</th>
         <th>Mobile No.</th>
-        <th colspan="3"></th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
