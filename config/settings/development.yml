@@ -1,1 +1,3 @@
 PAYMONGO_RETURN_URL: "http://localhost:3000/card-payments/complete"
+PAYMONGO_GCASH_SUCCESS_URL: "http://localhost:3000/gcash-payments/success"
+PAYMONGO_GCASH_FAILED_URL: "http://localhost:3000/gcash-payments/failed"
