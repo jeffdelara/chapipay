@@ -11,13 +11,15 @@
   <td><%= address.country %></td>
   <td><%= address.zip_code %></td>
   <td><%= address.mobile_number %></td>
-  <td><%= link_to 'Show', admin_customer_address_path(address.user, address) %></td>
-  <td><%= link_to 'Edit', edit_admin_customer_address_path(address.user, address) %></td>
-  <td><%= link_to 'Delete', admin_customer_address_path(address.user, address),
-          method: :delete, data: { confirm: 'Are you sure?' } 
-      %>
+  <td class="no-wrap text-center">
+    <% if @customer %>
+      <%= link_to 'Show', admin_customer_address_path(address.user, address) %>
+      <%= link_to 'Edit', edit_admin_customer_address_path(address.user, address) %>
+      <%= link_to 'Delete', admin_customer_address_path(address.user, address),
+              method: :delete, data: { confirm: 'Are you sure?' } 
+          %>
+    <% elsif @addresses %>
+      <%= link_to 'Show', admin_customer_path(address.user) %>
+    <% end %>
   </td>
-  <% if @addresses %>
-    <td><%= link_to 'Add address', new_admin_customer_address_path(address.user, address)%></td>
-  <% end %>
 </tr>
